@@ -1,0 +1,371 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/user
+    metadata:
+      title: ''
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/test
+    metadata:
+      title: ''
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: carroll.julianne@example.com
+        type: string
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: mm
+        type: string
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/testAgain
+    metadata:
+      title: ''
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/login
+    metadata:
+      title: 'Get a JWT via given credentials.'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'Must be a valid email address.'
+        required: true
+        example: nils00@example.net
+        type: string
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: cikt
+        type: string
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/register
+    metadata:
+      title: 'Register a User.'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must be between 2 and 100 characters.'
+        required: true
+        example: ggfnhevmkdqwdrzcgebpiqbtbksjqgndfugdzrvhluxnxhh
+        type: string
+      email:
+        name: email
+        description: 'Must be a valid email address. Must not be greater than 100 characters.'
+        required: true
+        example: wqddmulthajae
+        type: string
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: up
+        type: string
+      password_confirmation:
+        name: password_confirmation
+        description: ''
+        required: false
+        example: quos
+        type: string
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/logout
+    metadata:
+      title: 'Log the user out (Invalidate the token).'
+      description: ''
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/auth/refresh
+    metadata:
+      title: 'Refresh a token.'
+      description: ''
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/auth/user-profile
+    metadata:
+      title: 'Get the authenticated User.'
+      description: ''
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/getIncome
+    metadata:
+      title: 'Income test'
+      description: Test
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: 9
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/addIncome
+    metadata:
+      title: 'Add Income'
+      description: 'Add income entry to database'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: 7
+        type: integer
+      value:
+        name: value
+        description: ''
+        required: false
+        example: sapiente
+        type: dec
+      type:
+        name: type
+        description: ''
+        required: false
+        example: ad
+        type: string
+      entry_date:
+        name: entry_date
+        description: ''
+        required: false
+        example: a
+        type: date
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/removeIncome
+    metadata:
+      title: 'Remove Income'
+      description: 'Remove income entry from database'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: ''
+        required: false
+        example: 17
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/getExpenses
+    metadata:
+      title: 'Expenses test'
+      description: Test
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: 9
+        type: integer
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/addExpenses
+    metadata:
+      title: 'Add Expenses'
+      description: 'Add expenses entry to database'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: ''
+        required: false
+        example: 11
+        type: integer
+      value:
+        name: value
+        description: ''
+        required: false
+        example: incidunt
+        type: dec
+      type:
+        name: type
+        description: ''
+        required: false
+        example: ullam
+        type: string
+      entry_date:
+        name: entry_date
+        description: ''
+        required: false
+        example: vitae
+        type: date
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/removeExpenses
+    metadata:
+      title: 'Remove Expenses'
+      description: 'Remove expenses entry from database'
+      authenticated: true
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: ''
+        required: false
+        example: 6
+        type: integer
+    responses: []
+    responseFields: []
